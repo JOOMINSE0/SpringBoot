@@ -7,13 +7,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ShopApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ShopApplication.class, args);
-		final String lover = "주민서"; //final키워드 붙이면 변경 불가능
-		final int age = 22; //type대신 var키워드 가능
-		System.out.println(lover);
-		System.out.println(age);
+	Test test = new Test(); //class 복사본은 object라고 부름, 클래스도 일종의 자료형 역할 가능
+	System.out.println(test.name);
+	}
+}
 
-
-
+class Test{
+	//class 안의 변수는 field / attribute
+	//class 안의 함수는 method
+	String name = "ju";
+	void hello(){
+		System.out.println("안녕");
 	}
 }
