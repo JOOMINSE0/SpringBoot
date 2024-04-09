@@ -7,16 +7,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ShopApplication {
 
 	public static void main(String[] args) {
-	Test test = new Test(); //class 복사본은 object라고 부름, 클래스도 일종의 자료형 역할 가능
-	System.out.println(test.name);
+		var test = new Friend("lee");
+		System.out.println(test.name);
+
+	}
+}
+class Friend{
+	String name = "ju";
+	int age = 22;
+	Friend(String 작명){ //constructor / new Friend 할 때 자동 실행됨
+		this.name = 작명; //this는 새로 생성될 object
 	}
 }
 
-class Test{
-	//class 안의 변수는 field / attribute
-	//class 안의 함수는 method
-	String name = "ju";
-	void hello(){
-		System.out.println("안녕");
-	}
-}
