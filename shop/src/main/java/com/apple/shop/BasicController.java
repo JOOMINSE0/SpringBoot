@@ -14,18 +14,17 @@ public class BasicController {
         return "index.html"; //"안녕하세요"보여줌
     }
 
-    @GetMapping("/about") //메인페이지 접속하면
-    @ResponseBody
+    @GetMapping("/about") //어바웃페이지 접속하면
+    @ResponseBody //문자 그대로를 보내주세요
     String about(){
-        return "피싱사이트에요"; //"안녕하세요"보여줌
+        return "피싱사이트에요";
     }
 
 
-    @GetMapping("/date") //메인페이지 접속하면
+    @GetMapping("/date")
     @ResponseBody
     String date(){
-        LocalDateTime now = LocalDateTime.now();
-        return now.toString(); //"안녕하세요"보여줌
+        return LocalDateTime.now().toString();
     }
 
 }
