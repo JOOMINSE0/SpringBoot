@@ -18,11 +18,9 @@ public class ItemController {
     @GetMapping("/list")
     String list(Model model){
         List<Item> result = itemRepository.findAll(); //List자료형으로 가져옴
-        System.out.println(result.get(0).price); //첫번쨰 자료
-        System.out.println(result.get(0).title);
-        ArrayList<Object> a = new ArrayList<>(); //Object는 다양한 타입
-
-        model.addAttribute("name", "비싼 바지");
+        model.addAttribute("items", result);
+        var a = new Item();
+        System.out.println(a.toString()); //object 한눈에 보고싶으면 .toStrind()만들어서 쓰기
         return "list.html";
     }
 
