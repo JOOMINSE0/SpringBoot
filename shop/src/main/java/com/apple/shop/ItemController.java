@@ -34,13 +34,11 @@ public class ItemController {
     }
 
     @PostMapping("/add")
-    String addPost(@RequestParam Map formData) {
-        //Map자료형(여러 데이터 한 변수에 넣고 싶을 때)
-        var test = new HashMap<>();
-        test.put("name", "ju");
-        test.put("age", "22");
-        System.out.println(test.get("name")); //Map에서 자료 하나만 뽑으려면
-        itemRepository.save();
+    String addPost(String title, Integer price) {
+    Item item  =  new Item();
+    item.setTitle(title);
+    item.setPrice(price);
+    itemRepository.save(item);
         return "redirect:/list";
 
     }

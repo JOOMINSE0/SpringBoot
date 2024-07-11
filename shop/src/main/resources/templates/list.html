@@ -9,6 +9,9 @@
     <link href="/main.css" rel="stylesheet">
 </head>
 <body>
+<div th:replace="~{ nav.html::navbar }"></div>
+
+
 <!--th:each로 html반복생성 가능 -->
 <!--items안에 있던 자료를 하나씩 꺼내줌-->
 <div class="card" th:each="i : ${items}">
