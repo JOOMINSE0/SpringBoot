@@ -3,15 +3,14 @@ package com.apple.shop; //현재 파일의 경로
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller //api만들 수 있음
 @RequiredArgsConstructor
@@ -41,6 +40,16 @@ public class ItemController {
     itemRepository.save(item);
         return "redirect:/list";
 
+    }
+
+    @GetMapping("/detail/{id}")
+    String detail(@PathVariable Integer id) {
+        System.out.println(id);
+        Optional<Item> result = itemRepository.findById(1L); // Optional은 null일 수도 있고 아닐 수도 있다는 타입
+        if ( result.isPresent() ){ //Optional 타입은 출력하기 전에 값이 존재하는지 체크해야 함
+            System.out.println(result.get());
+        }
+        return "detail.html";
     }
 
 
