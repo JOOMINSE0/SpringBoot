@@ -38,18 +38,22 @@ public class ItemController {
     item.setTitle(title);
     item.setPrice(price);
     itemRepository.save(item);
+
         return "redirect:/list";
 
     }
 
     @GetMapping("/detail/{id}")
-    String detail(@PathVariable Integer id) {
+    String detail(@PathVariable Long  id, Model model) {
         System.out.println(id);
-        Optional<Item> result = itemRepository.findById(1L); // Optional은 null일 수도 있고 아닐 수도 있다는 타입
+        Optional<Item> result = itemRepository.findById(id); // Optional은 null일 수도 있고 아닐 수도 있다는 타입
         if ( result.isPresent() ){ //Optional 타입은 출력하기 전에 값이 존재하는지 체크해야 함
-            System.out.println(result.get());
+            model.addAttribute("data", result.get());
+            return "detail.html";
+        } else{
+            return "redirect:/list";
         }
-        return "detail.html";
+
     }
 
 
