@@ -15,6 +15,7 @@ import java.util.*;
 public class ItemController {
 
     private final ItemRepository itemRepository; //DB입출력함수 들어있음
+    private final ItemService itemService; //사용할 곳에서 변수로 등록하기
 
     @GetMapping("/list")
     String list(Model model){
@@ -32,35 +33,26 @@ public class ItemController {
 
     @PostMapping("/add")
     String addPost(String title, Integer price) {
-    Item item  =  new Item();
-    item.setTitle(title);
-    item.setPrice(price);
-    itemRepository.save(item);
 
+        itemService.saveItem(title, price);
         return "redirect:/list";
 
     }
 
     @GetMapping("/detail/{id}")
-    String detail(@PathVariable Long  id, Model model) throws Exception {
+    String detail(@PathVariable Long  id, Model model){
 
-        throw new Exception();
-
-
-//        Optional<Item> result = itemRepository.findById(id); // Optional은 null일 수도 있고 아닐 수도 있다는 타입
-//        if ( result.isPresent() ){ //Optional 타입은 출력하기 전에 값이 존재하는지 체크해야 함
-//            model.addAttribute("data", result.get());
-//            return "detail.html";
-//        } else{
-//            return "redirect:/list";
-//        }
+        Optional<Item> result = itemRepository.findById(id); // Optional은 null일 수도 있고 아닐 수도 있다는 타입
+        if ( result.isPresent() ){ //Optional 타입은 출력하기 전에 값이 존재하는지 체크해야 함
+            model.addAttribute("data", result.get());
+            return "detail.html";
+        } else{
+            return "redirect:/list";
+        }
 
     }
 
     //모든 API의 에러를 캐치하려면 @ExceptionHandler
-
-
-
 
 
 }
