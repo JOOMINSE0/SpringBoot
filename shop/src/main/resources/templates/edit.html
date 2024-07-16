@@ -11,18 +11,14 @@
 <body>
 <div th:replace="~{ nav.html::navbar }"></div>
 
+<form action="/edit", method="POST">
+    <!--    post method 요청 날리면 서버로 데이터 전송 가능-->
+    <input name="id" th:value="${data.id}" style="display:none">
+    <input name="title" th:value="${data.title}">
+    <input name="price" th:value="${data.price}">
+    <button type="submit">전송</button>
 
-<!--th:each로 html반복생성 가능 -->
-<!--items안에 있던 자료를 하나씩 꺼내줌-->
-<div class="card" th:each="i : ${items}">
-    <img src="https://placehold.co/300">
-    <div>
-        <h4 th:text="${i.title}"></h4>
-        <a th:href="@{ '/detail/' + ${i.id} }">링크</a>
-        <p th:text="${i.price}"></p>
-        <a th:href="@{ '/edit/' + ${i.id} }"> ✏️ </a>
-    </div>
-</div>
+</form>
 
 </body>
 </html>

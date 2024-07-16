@@ -52,7 +52,28 @@ public class ItemController {
 
     }
 
-    //모든 API의 에러를 캐치하려면 @ExceptionHandler
+    //수정 페이지
+    @GetMapping("/edit/{id}")
+    String edit(Model model, @PathVariable Long id){
 
+        Optional<Item> result = itemRepository.findById(id);
+        if (result.isPresent()) {
+            model.addAttribute("data", result.get());
+            return "edit.html";
+        } else{
+            return "redirect:/list";
+        }
+    }
+
+    @PostMapping("/edit")
+    String editItem(String title,Integer price, Long id){
+        Item item = new Item();
+        //서버에서 모르는 정보는 유저에게 보내라고 하기 or DB조회하기
+        item.setId(id);
+        item.setTitle(title);
+        item.setPrice(price);
+        itemRepository.save(item);
+    return "redirect:/list";
+    }
 
 }
