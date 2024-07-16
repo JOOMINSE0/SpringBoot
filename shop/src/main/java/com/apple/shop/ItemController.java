@@ -2,15 +2,11 @@ package com.apple.shop; //현재 파일의 경로
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -46,16 +42,25 @@ public class ItemController {
     }
 
     @GetMapping("/detail/{id}")
-    ResponseEntity<String> detail(@PathVariable Long  id, Model model) {
+    String detail(@PathVariable Long  id, Model model) throws Exception {
 
-        try{
-         throw new Exception();
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("에러");
-            //유저 잘못 400
-            //서버 잘못 500
-            //정상 작동 200
-        }
+        throw new Exception();
+
+
+//        Optional<Item> result = itemRepository.findById(id); // Optional은 null일 수도 있고 아닐 수도 있다는 타입
+//        if ( result.isPresent() ){ //Optional 타입은 출력하기 전에 값이 존재하는지 체크해야 함
+//            model.addAttribute("data", result.get());
+//            return "detail.html";
+//        } else{
+//            return "redirect:/list";
+//        }
+
     }
+
+    //모든 API의 에러를 캐치하려면 @ExceptionHandler
+
+
+
+
+
 }
