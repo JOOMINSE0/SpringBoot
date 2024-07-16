@@ -3,6 +3,7 @@ package com.apple.shop; //현재 파일의 경로
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
@@ -76,10 +77,19 @@ public class ItemController {
     return "redirect:/list";
     }
 
-    @DeleteMapping("/item")
+    @DeleteMapping("/item{abc}")
     ResponseEntity<String> deleteItem(@RequestParam Long id) {
         itemRepository.deleteById(id);
         return ResponseEntity.status(200).body("삭제완료");
     }
+
+
+    @GetMapping("/test2")
+    String deleteItem() {
+        var result = new BCryptPasswordEncoder().encode("문자~~");
+        System.out.println(result);
+        return "redirect:/list";
+    }
+
 
 }
