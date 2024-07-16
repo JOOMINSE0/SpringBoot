@@ -76,10 +76,10 @@ public class ItemController {
     return "redirect:/list";
     }
 
-    @PostMapping("/test1")
-    String test1(@RequestBody Map<String, Object> body) {
-        System.out.println(body.get("name"));
-        return "redirect:/list";
+    @DeleteMapping("/item")
+    ResponseEntity<String> deleteItem(@RequestParam Long id) {
+        itemRepository.deleteById(id);
+        return ResponseEntity.status(200).body("삭제완료");
     }
 
 }

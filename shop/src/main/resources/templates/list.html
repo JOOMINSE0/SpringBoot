@@ -21,6 +21,14 @@
         <a th:href="@{ '/detail/' + ${i.id} }">링크</a>
         <p th:text="${i.price}"></p>
         <a th:href="@{ '/edit/' + ${i.id} }"> ✏️ </a>
+        <span th:onclick="fetch('/item?id=[[${i.id}]]', {method : 'DELETE'})
+        .then(r => r.text())
+        .then(() => {
+            location.reload();
+<!--            ajax요청이 완료되었을 때 새로고침-->
+        })
+
+    ">🗑️</span>
     </div>
 </div>
 
@@ -34,7 +42,6 @@
         body : JSON.stringify({name : 'kim'})
       })
     })
-
 </script>
 </body>
 </html>
