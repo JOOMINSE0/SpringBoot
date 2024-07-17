@@ -11,14 +11,12 @@
 <body>
 <div th:replace="~{ nav.html::navbar }"></div>
 
-<h4>새로 가입해도 쿠폰 안 줌</h4>
+<h4>마이페이지</h4>
+<div sec:authentication="principal"></div>
+<div sec:authentication="principal.username"></div>
+<div sec:authorize="isAnonymous()">로그아웃인 유저만</div>
 
-<form action="/member" method="POST">
-    <input name="displayName" placeholder="이름">
-    <input name="username" placeholder="아이디">
-    <input name="password" placeholder="비밀번호" type="password">
-    <button type="submit">전송</button>
-</form>
+
 
 </body>
 </html>

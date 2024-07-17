@@ -11,8 +11,10 @@
 <body>
 <div th:replace="~{ nav.html::navbar }"></div>
 
-<form action="/add" method="post">
-<!--    post method 요청 날리면 서버로 데이터 전송 가능-->
+
+
+<form action="/add" method="POST">
+    <!--    post method 요청 날리면 서버로 데이터 전송 가능-->
     <input name="title">
     <input name="price">
     <button type="submit">전송</button>

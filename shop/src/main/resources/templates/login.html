@@ -11,13 +11,18 @@
 <body>
 <div th:replace="~{ nav.html::navbar }"></div>
 
-<h4>새로 가입해도 쿠폰 안 줌</h4>
+<h4>로그인하세요!</h4>
 
-<form action="/member" method="POST">
-    <input name="displayName" placeholder="이름">
-    <input name="username" placeholder="아이디">
-    <input name="password" placeholder="비밀번호" type="password">
+<div th:if="${param.error}">
+    <h4>아이디나 비빌번호가 틀렸습니다.</h4>
+</div>
+
+<form action="/login" method="POST">
+    <!--    post method 요청 날리면 서버로 데이터 전송 가능-->
+    <input name="username">
+    <input name="password" type="password">
     <button type="submit">전송</button>
+
 </form>
 
 </body>
